@@ -12,15 +12,24 @@ public class HibernateMain {
 		person.setFirstName("HbmFirstname");
 		person.setLastName("HbmLastname");
 		person.setSalary(100000);
-		
-		Configuration config = new Configuration().configure("hibernate.cfg.xml");
+
+		Configuration config = new Configuration().configure();
 		SessionFactory sessionFactory = config.buildSessionFactory();
 		Session session = sessionFactory.openSession();
-		
+
 		session.beginTransaction();
-	
-		session.save(person);
-		
+
+		// session.save(person);
+
 		session.getTransaction().commit();
+
+		// sessionFactory.close();
+
+		// GEt specific user - load will throw ObjectNotFoundException when not found in DB
+		Person allusers = session.load(Person.class, 22);
+		System.out.println("Details: id=" + allusers.getId() + " firstname=" + allusers.getFirstName() + " lastname="
+				+ allusers.getLastName());
+
 	}
+
 }

@@ -6,7 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Entity
+@Entity(name="p")
 @Table(name = "person")
 public class Person {
 	 @Id @GeneratedValue
@@ -16,7 +16,7 @@ public class Person {
 	   private String firstName; 
 	   @Column(name = "lastname")
 	   private String lastName;   
-	   @Column(name = "salary")
+	   @Column(name = "sal")
 	   private int salary;  
 
 	   public Person() {}
