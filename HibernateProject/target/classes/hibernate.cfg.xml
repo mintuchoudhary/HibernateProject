@@ -11,18 +11,27 @@
 		<property name="hibernate.connection.password">system</property>
 		<property name="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</property>
 		<property name="hibernate.default_schema">SYSTEM</property>
-		
+
 		<property name="show_sql">true</property>
-		
-		<property name="hbm2ddl.auto">update</property> <!-- create will create new table  -->
-		
-		<property name="hibernate.connection.autocommit">true</property> 
-		 
-		 <!-- <mapping resource="com/mkyong/user/DBUser.hbm.xml"></mapping> -->
-		 
-		 <mapping class="com.m2.hibernate.model.Person" />
-		 <mapping class="com.m2.hibernate.model.Vehicle" />
-		 <mapping class="com.m2.hibernate.model.Certificates" />
-		 <mapping class="com.m2.hibernate.model.University" />
+
+		<property name="hbm2ddl.auto">update</property> <!-- create will create new table -->
+
+		<property name="hibernate.connection.autocommit">true</property>
+
+		<!-- <property name="cache.provider_class">org.hibernate.cache.NoCacheProvider</property> --> <!-- Disable 2nd level cache -->
+		<property name="hibernate.cache.use_second_level_cache">true</property>
+		<property name="hibernate.cache.use_query_cache">true</property><!-- to cache HQL query -->
+		<property name="hibernate.cache.region.factory_class">org.hibernate.cache.EhCacheRegionFactory</property>
+
+
+		<property name="net.sf.ehcache.configurationResourceName">/ehcache_cfg.xml</property>
+
+		<!-- <mapping resource="com/mkyong/user/DBUser.hbm.xml"></mapping> -->
+
+		<mapping class="com.m2.hibernate.model.Person" />
+		<mapping class="com.m2.hibernate.model.Vehicle" />
+		<mapping class="com.m2.hibernate.model.Certificates" />
+		<mapping class="com.m2.hibernate.model.University" />
+		<mapping class="com.m2.hibernate.model.Project" />
 	</session-factory>
 </hibernate-configuration>

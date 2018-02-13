@@ -16,8 +16,17 @@ public class Certificates {
 	@GeneratedValue
 	private int certId;
 	private String certName;
-	
+	@ManyToOne
+	private Person person;
  
+	public Person getPerson() {
+		return person;
+	}
+
+	public void setPerson(Person person) {
+		this.person = person;
+	}
+
 	public int getCertId() {
 		return certId;
 	}

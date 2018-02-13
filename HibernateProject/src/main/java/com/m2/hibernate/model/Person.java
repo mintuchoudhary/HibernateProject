@@ -2,6 +2,7 @@ package com.m2.hibernate.model;
 
 import java.util.Collection;
 
+import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -14,8 +15,13 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
 @Entity(name = "p")
 @Table(name = "person")
+//@Cacheable
+@Cache(usage = CacheConcurrencyStrategy.READ_ONLY,region="person_cache_region")
 public class Person {
 
 	@Id
@@ -29,13 +35,14 @@ public class Person {
 	private int salary;
 
 	@OneToOne
-	@JoinColumn(name = "vehicle_id") // To change colum name created in person table as vehicle_id (default : vehicle_vehicleId) 
+	@JoinColumn(name = "v_id") // To change colum name created in person table as vehicle_id (default : vehicle_vehicleId) 
 	private Vehicle vehicle;
 
 	@OneToMany(fetch=FetchType.LAZY)
-	//@JoinTable(name="per_cert")  //To give new name to third table
+	//@OneToMany(mappedBy="person")  // To map personId to Certificate table **Note: this will not create 3rd table 
+	//@JoinTable(name="per_cert")  //To give new name to third table : per_cert ( default like: person_Certificates)
 	//@JoinTable(joinColumns=@JoinColumn(name="person_id",referencedColumnName="id"),inverseJoinColumns=@JoinColumn(name="user_cert_id",referencedColumnName="certId"))
-	//To rename columns of newly created table. inverseJoinColumns is used for 
+	//To rename columns of newly created table. inverseJoinColumns is used for reference entity column to be updated
 	private Collection<Certificates> certificates;
 	
 	@ManyToOne

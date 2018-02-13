@@ -21,14 +21,24 @@
 			<artifactId>hibernate-core</artifactId>
 			<version>5.2.12.Final</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/com.oracle/ojdbc14 -->
-
-		 
+		<!-- EHCache Core APIs -->
+		<!-- 	<dependency>
+			<groupId>net.sf.ehcache</groupId>
+			<artifactId>ehcache</artifactId>
+			<version>2.6.11</version>
+		</dependency> -->
+		<!-- Hibernate EHCache API -->
+			<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-ehcache</artifactId>
+			<version>5.2.12.Final</version>
+		</dependency>
+	
+		
 	</dependencies>
-
-	<build>
+	  <build>
 		<pluginManagement>
-			<plugins>
+			<plugins> 
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-compiler-plugin</artifactId>
@@ -40,5 +50,5 @@
 				</plugin>
 			</plugins>
 		</pluginManagement>
-	</build>
+	</build>  
 </project>

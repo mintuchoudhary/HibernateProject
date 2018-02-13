@@ -1,5 +1,6 @@
 package com.m2.hibernate.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -11,6 +12,7 @@ import javax.persistence.Id;
 @Entity
 public class Vehicle {
 	@Id @GeneratedValue
+	
 	private int vehicleId;
 	private String vehicleName;
 

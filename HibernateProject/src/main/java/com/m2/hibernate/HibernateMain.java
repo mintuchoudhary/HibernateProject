@@ -22,26 +22,28 @@ public class HibernateMain {
 
 		Configuration config = new Configuration().configure();
 		SessionFactory sessionFactory = config.buildSessionFactory();
-		Session session = sessionFactory.openSession();
-
+		//SessionFactory sessionFactory1 = config.buildSessionFactory();
+		Session session = sessionFactory.openSession(); 
 		Transaction tx = session.beginTransaction();
+	 
        /***********************************To Save Record**********************************************/
-		// session.save(person);
+		  session.save(person);
 
 		// session.getTransaction().commit(); OR
-		tx.commit();
+		//tx.commit();
 
 		// sessionFactory.close();
 		
 		/***********************************To Get Specific Record**********************************************/
 		// load will throw ObjectNotFoundException when not		 
-		Person singleuser = session.get(Person.class, 30);
+	 	Person singleuser = session.get(Person.class, 67);
+		if(singleuser!=null)
 		System.out.println("Details: id=" + singleuser.getId() + " firstname=" + singleuser.getFirstName()
 				+ " lastname=" + singleuser.getLastName());
 
-		
+	 	 
 		/***********************************To Get ALL Record**********************************************/
-		List<Person> allPerson = session.createQuery("from  p").list();
+	/*	List<Person> allPerson = session.createQuery("from  p").list();
 		//List<Person> allPerson1 = session.createCriteria(Person.class).list(); // deprecated way
 		
 		Iterator<Person> itr = allPerson.iterator();
@@ -52,14 +54,17 @@ public class HibernateMain {
 			System.out.print(" " + per.getLastName());
 			System.out.print(" " + per.getSalary());
 			System.out.println();
-		}
+		}*/
 
 		/***********************************To Update Record**********************************************/
 		try {
-			tx = session.beginTransaction();
-			singleuser.setSalary(17000);
+		//	tx = session.beginTransaction();
+			//tx1 = session1.beginTransaction();
+			singleuser.setFirstName("Mintuuu");
+	
 
 			tx.commit();
+			 
 		} catch (HibernateException e) {
 			if (tx != null)
 				tx.rollback();
@@ -71,7 +76,8 @@ public class HibernateMain {
 		 tx = session.beginTransaction(); 
 		 Person deletePerson = session.get(Person.class, 24); 
          session.delete(deletePerson);
-		 tx.commit();
+		
+		//tx.commit();
 		 
 	}
 
